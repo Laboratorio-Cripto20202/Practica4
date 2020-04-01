@@ -8,7 +8,13 @@ def big_int(size=None):
     máximo es de 150 dígitos.
     :return: Un número del tamaño descrito.
     """
-    pass
+    if size is None or size < 100:
+        size = randint(100, 150)
+    kind_of_number = [randint(0, 9) for i in range(size)]
+    if kind_of_number[0] == 0:
+        kind_of_number[0] = randint(1, 9)
+    to_string = ""
+    return to_string.join(map(str, kind_of_number))
 
 def miller_rabin(n):
     """
