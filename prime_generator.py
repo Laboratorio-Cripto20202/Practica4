@@ -1,6 +1,8 @@
 from random import randint
 from random import randrange
 
+import math
+
 def big_int(size=None):
     """
     Generador de números aleatorios de un tamaño fijo recibido como parámetro, si el parámetro es
@@ -16,13 +18,58 @@ def big_int(size=None):
     to_string = ""
     return to_string.join(map(str, kind_of_number))
 
+#Saca el valor 2-adico del número n
+def get2adicVal(n): 
+    val = 0
+    num = n
+    while (num % 2 == 0):
+        val = val + 1
+        #floor division
+        num = num // 2
+    return val
+
+#Obtenemos una base a, donde gcd(a,n) = 1
+def getA(n):
+    if n <= 4: 
+        return n
+    r = randint(2,n-2)
+    while math.gcd(r,n) != 1:
+        r = randint(2,n-2)
+    return r
+
+#Verificamos si un número es congruente con otro modulo n
+def congruentWithBMod(a,b,mod):
+    return (a) == (b % mod)
+        
 def miller_rabin(n):
     """
     Implementación del test de primalidad de Miller-Rabin.
     :param n: El número a determinar su primalidad.
     :return: True si n es primo, False en otro caso.
     """
-    pass
+    if n < 4:
+        return True
+    if n % 2 == 0:
+        return False
+    nMinusOne = n-1
+    twoAdicVal = get2adicVal(nMinusOne)
+    factorN = nMinusOne // pow(2,twoAdicVal)
+
+    a = getA(n)
+    aToM = pow(a,factorN,n)
+    if congruentWithBMod(aToM,1,n) or congruentWithBMod(aToM,-1,n):
+        return True
+    sIndex = 1
+    while sIndex < twoAdicVal: 
+        powerTwo = pow(2,sIndex)
+        aToPower = pow(aToM,powerTwo,n)
+        if congruentWithBMod(aToPower,1,n):
+            return False
+        if congruentWithBMod(aToPower,-1,n):
+            return True
+        sIndex = sIndex + 1
+    return False
+    
 
 
 def wilson(n):
@@ -33,3 +80,4 @@ def wilson(n):
     :return: True si n es primo, False en otro caso.
     """
     pass
+
