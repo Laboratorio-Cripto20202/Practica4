@@ -6,7 +6,7 @@
 
 #### Integrantes:
 
-- Alma Páes Alcala
+- Alma Rosa Páes Alcala
 - Diego Marcial Fernández del Valle
 - Alejandro Valderrama Silva
 
