@@ -55,5 +55,11 @@ def wilson(n):
     :param n: El número a determinar su primalidad.
     :return: True si n es primo, False en otro caso.
     """
-    pass
+    result=1
+    for i in range(2,n-1):
+        result=(result*i)%n
+    if(result is -1):
+        return True
+    return False
+        
 
