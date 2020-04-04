@@ -56,7 +56,7 @@ def wilson(n):
     :return: True si n es primo, False en otro caso.
     """
     result=1
-    for i in range(2,n-1):
+    for i in range(2,n):
         result=(result*i)%n
     if(result is ((-1)% n)):
         return True
