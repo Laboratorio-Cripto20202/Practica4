@@ -1,6 +1,7 @@
 from random import randint
 from random import randrange
 from utils import *
+import math
 
 def big_int(size=None):
     """
@@ -55,9 +56,7 @@ def wilson(n):
     :param n: El número a determinar su primalidad.
     :return: True si n es primo, False en otro caso.
     """
-    result=1
-    for i in range(2,n):
-        result=(result*i)%n
+    result=(math.factorial(n-1))%n
     if(result is ((-1)% n)):
         return True
     return False
