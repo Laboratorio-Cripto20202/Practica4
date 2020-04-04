@@ -58,7 +58,7 @@ def wilson(n):
     result=1
     for i in range(2,n-1):
         result=(result*i)%n
-    if(result is -1):
+    if(result is ((-1)% n)):
         return True
     return False
         
